@@ -30,6 +30,15 @@ export class AuthService {
     return user;
   }
 
+  async signToken(userId: number, email: string) {
+    const data = {
+      sub: userId,
+      email,
+    };
+
+    return this.jwt.signAsync(data);
+  }
+
   async signup(dto: AuthDto) {
     // generate the password first
     const hash = await argon.hash(dto.password);
