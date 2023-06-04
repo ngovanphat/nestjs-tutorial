@@ -20,6 +20,9 @@ model User {
 
   firstName String?
   lastName String?
+  
+  emailVerificationToken String?
+  isEmailVerified Boolean @default(false)
 
   bookmarks Bookmark[]
   
@@ -35,7 +38,7 @@ model Bookmark {
   link String
 
   userId Int
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("bookmarks")
 }
